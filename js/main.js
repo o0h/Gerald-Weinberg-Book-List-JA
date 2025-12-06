@@ -10,7 +10,6 @@ const columns = [
   { key: 'originalTitle', label: '原著タイトル', sortable: true, sortKey: 'originalTitle', linkUrlKey: 'authorSiteUrl' },
   { key: 'originalYear', label: '原著出版年', sortable: true, sortKey: 'originalYear' },
   { key: 'originalPublisher', label: '原著出版社', sortable: false },
-  { key: 'asin', label: 'ASIN(JP)', sortable: false, linkUrlKey: 'amazonUrl' },
   { key: 'category', label: 'カテゴリ', sortable: false }
 ];
 
@@ -166,7 +165,19 @@ function createCell(book, column) {
   const td = document.createElement('td');
   const value = book[column.key];
 
-  if (column.isLink && value) {
+  if (column.key === 'title') {
+    const amazonUrl = book.amazonUrl;
+    if (amazonUrl) {
+      const link = document.createElement('a');
+      link.href = amazonUrl;
+      link.textContent = formatCellValue(value);
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      td.appendChild(link);
+    } else {
+      td.textContent = formatCellValue(value);
+    }
+  } else if (column.isLink && value) {
     // Link column: value is the URL, linkText is the display text
     const link = document.createElement('a');
     link.href = value;
