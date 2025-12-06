@@ -54,7 +54,7 @@ main {
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   font-size: 0.875rem;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 /* Table Header */
@@ -70,8 +70,6 @@ main {
   border-bottom: 2px solid #e5e7eb;
   white-space: nowrap;
   position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Resize Handle */
@@ -95,8 +93,6 @@ main {
   padding: 10px 8px;
   border-bottom: 1px solid #e5e7eb;
   vertical-align: top;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 #book-table td:nth-child(5) {
